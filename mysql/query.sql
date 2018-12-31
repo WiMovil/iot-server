@@ -17,7 +17,7 @@ CREATE TABLE tb_tipo_actuador(
     PRIMARY KEY (id_tipo_actuador)
 )ENGINE = InnoDB CHARSET=UTF8;
 
-INSERT INTO tb_tipo_actuador(id_tipo_actuador,nom_tipo_actuador) VALUES(1,'Switch');
+INSERT INTO tb_tipo_actuador(id_tipo_actuador,nom_tipo_actuador) VALUES(1,'Relay');
 INSERT INTO tb_tipo_actuador(id_tipo_actuador,nom_tipo_actuador) VALUES(2,'Dimmer');
 
 CREATE TABLE tb_ambiente(
@@ -87,7 +87,8 @@ CREATE TABLE tb_tipo_sensor(
 
 SELECT * FROM tb_tipo_sensor;
 INSERT INTO tb_tipo_sensor(id_tipo_sensor,nom_tipo_sensor) VALUES('1','Touch boton');
-INSERT INTO tb_tipo_sensor(id_tipo_sensor,nom_tipo_sensor) VALUES('2','PIR');
+INSERT INTO tb_tipo_sensor(id_tipo_sensor,nom_tipo_sensor) VALUES('2','Interruptor');
+INSERT INTO tb_tipo_sensor(id_tipo_sensor,nom_tipo_sensor) VALUES('3','PIR');
 
 
 CREATE TABLE tb_sensor(
