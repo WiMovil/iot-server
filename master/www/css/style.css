@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+  font-family: Michroma;
+  src: url("/font/Michroma.ttf");
+}
+
+
+#login div[id="container"]{
+	margin: 0px auto;
+	madding: 0px;
+	width: 100%;
+}
+
+
+#login input[type="text"],
+#login input[type="password"],
+#login div[id="container"]{
+	text-align: center;
+	font-family: Michroma;
+}
+
+#login div[id="container"] div[id="logo"]{
+	top: 60px;
+	right: 65px;
+}
+
+#login div[id="container"] label{
+	font-size: 15px bold;
+	color: #FFFFFF;
+}
+
+#login input[type="text"],
+#login input[type="password"]{
+	width: 200px;
+	height: 30px;
+	border: #000000 1px solid;
+}
+
+
+
+/* Wallpaper*/
+
+.wallpaper_login {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url("/img/wallpaper.jpg");
+    background-repeat:repeat;
+	overflow: scroll;
+  }
+
+
+/*Scrool bar*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#4A4949; 
+  border-radius: 10px;
+}
+

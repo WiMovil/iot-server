@@ -4,7 +4,9 @@ require('mysql_query.php');
 
 $mysql=new mysql();
 
-$mysql->get_est_puerto_actuador();
+$mysql->update_est_puerto_actuador();
+
+
 
 
 ?>

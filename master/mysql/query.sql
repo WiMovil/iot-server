@@ -23,10 +23,16 @@ INSERT INTO tb_tipo_actuador(id_tipo_actuador,nom_tipo_actuador) VALUES(2,'Dimme
 CREATE TABLE tb_ambiente(
 	id_ambiente BIGINT AUTO_INCREMENT,
     nom_ambiente VARCHAR(100),
+    tem_ambiente INT, -- TEMPERATURA
+    hum_ambiente INT, -- HUMEDAD
+    lum_ambiente INT, -- ILUMINACION
     PRIMARY KEY (id_ambiente)
 )ENGINE = InnoDB CHARSET=UTF8;
 
 INSERT INTO tb_ambiente(nom_ambiente) VALUES('default');
+
+
+
 
 
 CREATE TABLE tb_actuador(
@@ -45,6 +51,7 @@ CREATE TABLE tb_actuador(
 SELECT * FROM tb_actuador;
 
 INSERT INTO tb_actuador(nom_actuador,mac_actuador,ipa_actuador,dig_actuador,id_estado,id_ambiente) VALUES('Dormitorio Gerardo','2C:3A:E8:43:91:CF','172.16.30.132','100',1,1);
+INSERT INTO tb_actuador(nom_actuador,mac_actuador,ipa_actuador,dig_actuador,id_estado,id_ambiente) VALUES('Closet','5C:CF:7F:A3:AA:9F','172.16.30.123','101',1,1);
 
 
 
@@ -71,12 +78,17 @@ INSERT INTO tb_puerto_actuador(est_puerto_actuador,des_puerto_actuador,id_actuad
 INSERT INTO tb_puerto_actuador(est_puerto_actuador,des_puerto_actuador,id_actuador,id_tipo_actuador,id_estado,id_ambiente) VALUES(1,'Luz Panel',1,1,1,1);
 
 
+INSERT INTO tb_puerto_actuador(est_puerto_actuador,des_puerto_actuador,id_actuador,id_tipo_actuador,id_estado,id_ambiente) VALUES(1,'Luz Closet',2,1,1,1);
+
+
 SELECT * FROM tb_puerto_actuador;
 
 UPDATE tb_puerto_actuador SET est_puerto_actuador=0 WHERE id_puerto_actuador=1;
 UPDATE tb_puerto_actuador SET est_puerto_actuador=0 WHERE id_puerto_actuador=2;
 UPDATE tb_puerto_actuador SET est_puerto_actuador=0 WHERE id_puerto_actuador=3;
 UPDATE tb_puerto_actuador SET est_puerto_actuador=0 WHERE id_puerto_actuador=4;
+
+UPDATE tb_puerto_actuador SET est_puerto_actuador=255 WHERE id_puerto_actuador=5;
 
 
 CREATE TABLE tb_tipo_sensor(
@@ -158,14 +170,17 @@ INSERT INTO tb_puerto_actuador_puerto_sensor(id_puerto_actuador,id_puerto_sensor
 
 
 
+
 INSERT INTO tb_puerto_actuador_puerto_sensor(id_puerto_actuador,id_puerto_sensor,id_estado) VALUES(1,4,1);
 INSERT INTO tb_puerto_actuador_puerto_sensor(id_puerto_actuador,id_puerto_sensor,id_estado) VALUES(2,4,1);
 INSERT INTO tb_puerto_actuador_puerto_sensor(id_puerto_actuador,id_puerto_sensor,id_estado) VALUES(3,4,1);
 INSERT INTO tb_puerto_actuador_puerto_sensor(id_puerto_actuador,id_puerto_sensor,id_estado) VALUES(4,4,1);
 
 
+INSERT INTO tb_puerto_actuador_puerto_sensor(id_puerto_actuador,id_puerto_sensor,id_estado) VALUES(4,4,1);
 
-INSERT INTO tb_puerto_actuador_puerto_sensor(id_puerto_actuador,id_puerto_sensor,id_estado) VALUES(1,5,1);
+
+INSERT INTO tb_puerto_actuador_puerto_sensor(id_puerto_actuador,id_puerto_sensor,id_estado) VALUES(5,4,1);
 
 
 
@@ -287,3 +302,16 @@ SELECT mpaps.id_puerto_actuador FROM tb_puerto_actuador_puerto_sensor mpaps INNE
 
 
 SELECT mpaps.id_puerto_actuador FROM tb_puerto_actuador_puerto_sensor mpaps INNER JOIN tb_puerto_sensor ps ON mpaps.id_puerto_sensor=ps.id_puerto_sensor INNER JOIN tb_sensor s ON ps.id_sensor=s.id_sensor WHERE s.ipa_sensor='172.16.30.132' AND ps.id_puerto_sensor=1 AND ps.id_estado=1 AND s.id_estado=1 ORDER BY mpaps.id_puerto_actuador ASC;
+
+
+
+
+
+SELECT * FROM tb_actuador a INNER JOIN tb_puerto_actuador pa ON a.id_actuador=pa.id_actuador;
+
+UPDATE tb_actuador SET ipa_actuador='172.16.30.123' where id_actuador=2;
+
+
+UPDATE tb_puerto_actuador SET est_puerto_actuador=255 WHERE id_puerto_actuador=5;
+
+UPDATE tb_puerto_actuador SET est_puerto_actuador=0 WHERE id_puerto_actuador=5;
